@@ -78,3 +78,30 @@ function addTask(columnId, taskObj) {
   taskCounter++;
   document.getElementById("task-count").textContent = taskCounter;
 }
+
+// =============================
+// 3. DELETE TASK (WITH ANIMATION)
+// =============================
+function deleteTask(taskId) {
+  const card = document.querySelector('[data-id="' + taskId + '"]');
+
+  if (!card) return;
+
+  // Add fade-out class (you define in CSS)
+  card.classList.add("fade-out");
+
+  // Wait for animation to finish
+  card.addEventListener("animationend", function () {
+    // Remove from DOM
+    card.remove();
+
+    // Remove from array
+    tasks = tasks.filter(function (task) {
+      return task.id !== taskId;
+    });
+
+    // Update counter
+    taskCounter--;
+    document.getElementById("task-count").textContent = taskCounter;
+  });
+}
