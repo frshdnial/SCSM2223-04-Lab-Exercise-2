@@ -105,3 +105,26 @@ function deleteTask(taskId) {
     document.getElementById("task-count").textContent = taskCounter;
   });
 }
+
+// =============================
+// 4. EDIT TASK (OPEN MODAL)
+// =============================
+function editTask(taskId) {
+  const task = tasks.find(function (t) {
+    return t.id === taskId;
+  });
+
+  if (!task) return;
+
+  // Fill modal inputs
+  document.getElementById("task-title").value = task.title;
+  document.getElementById("task-desc").value = task.description;
+  document.getElementById("task-priority").value = task.priority;
+  document.getElementById("task-date").value = task.dueDate;
+
+  // Store current editing ID
+  document.getElementById("task-modal").setAttribute("data-edit-id", taskId);
+
+  // Show modal
+  document.getElementById("task-modal").classList.remove("hidden");
+}
