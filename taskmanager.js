@@ -56,3 +56,25 @@ function createTaskCard(taskObj) {
 
   return li;
 }
+
+// =============================
+// 2. ADD TASK
+// =============================
+function addTask(columnId, taskObj) {
+  // Add to array
+  tasks.push(taskObj);
+
+  // Find column
+  const column = document.getElementById(columnId);
+  const taskList = column.querySelector(".task-list");
+
+  // Create card
+  const card = createTaskCard(taskObj);
+
+  // Append
+  taskList.appendChild(card);
+
+  // Update counter
+  taskCounter++;
+  document.getElementById("task-count").textContent = taskCounter;
+}
