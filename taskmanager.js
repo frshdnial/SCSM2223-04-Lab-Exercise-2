@@ -128,3 +128,33 @@ function editTask(taskId) {
   // Show modal
   document.getElementById("task-modal").classList.remove("hidden");
 }
+
+// =============================
+// 5. UPDATE TASK
+// =============================
+function updateTask(taskId, updatedData) {
+  // Update array
+  const task = tasks.find(function (t) {
+    return t.id === taskId;
+  });
+
+  if (!task) return;
+
+  task.title = updatedData.title;
+  task.description = updatedData.description;
+  task.priority = updatedData.priority;
+  task.dueDate = updatedData.dueDate;
+
+  // Find existing card
+  const oldCard = document.querySelector('[data-id="' + taskId + '"]');
+
+  if (!oldCard) return;
+
+  const parent = oldCard.parentNode;
+
+  // Create updated card
+  const newCard = createTaskCard(task);
+
+  // Replace old with new
+  parent.replaceChild(newCard, oldCard);
+}
